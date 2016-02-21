@@ -4,12 +4,14 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :fullname, presence: true, length: { maximum: 100 } 
+
 	def image
 		""
 	end
 
 	def name
-		""
+		fullname
 	end
 
 end
