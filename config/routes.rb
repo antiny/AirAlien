@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   get 'pages/home'
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  devise_for :users, :controllers => {
+                        :omniauth_callbacks => 'omniauth_callbacks',
+                        :registrations => 'registrations'
+                      }
   resources :users, only: [ :show ]
 
   

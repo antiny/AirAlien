@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails airalien: production" uuid="4f67aafc-b4cd-4136-97ef-3ddf7ce0a8cc">
+      <first-sync>true</first-sync>
+      <user-name>airalien</user-name>
+      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddfebdfe3dff8dfebdfe6dfe3dfefdfe4dff5dfeedfebdffedfebdfe8dfebdff9dfefdff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
+    </data-source>
+    <data-source name="Rails airalien: development" uuid="d56bc373-1718-459b-864f-b0b4ee1d7a77">
+      <schema-pattern>airalien_development.*</schema-pattern>
+      <default-schemas>airalien_development.*</default-schemas>
+    </data-source>
+    <data-source name="Rails airalien: test" uuid="d1a58382-f374-4f96-8e8c-198fc0925ff5">
+      <schema-pattern>airalien_test.*</schema-pattern>
+      <default-schemas>airalien_test.*</default-schemas>
+    </data-source>
+  </component>
+</project>
