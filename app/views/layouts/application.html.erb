@@ -5,15 +5,16 @@
 	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	  <%= csrf_meta_tags %>
+
+	  <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 	</head>
 	<body>
 
-		<%= render 'shared/navbar' 	%>
+		<%= render 'shared/navbar' %>
+		<%= render 'shared/message' %>
 
-		<p class="notice"><%= notice %></p>
-		<p class="alert"><%= alert %></p>
-
-		<div class="container">
+		<div class="container" style="margin-top: 60px;">
 			<%= yield %>
 		</div>
 
