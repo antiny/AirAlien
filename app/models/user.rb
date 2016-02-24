@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
          :confirmable,
          :omniauthable, :omniauth_providers => [ :facebook ]
 
-  validates :fullname, presence: true, length: { maximum: 100 } 
+  validates :fullname, presence: true, length: { maximum: 100 }
+
+  has_many :rooms
 
 	def name
 		fullname
