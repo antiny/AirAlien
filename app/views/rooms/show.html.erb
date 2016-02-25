@@ -91,6 +91,8 @@
       <hr>
 
       <div class="row row-space-3">
+        <h4>Location</h4>
+
         <div class="col-md-12">
           <style>
             #map {
@@ -98,8 +100,6 @@
               height: 400px;
             }
           </style>
-
-          <h4>Location</h4>
           <div id="map"></div>
           <script>
             function initMap() {
@@ -120,6 +120,20 @@
         </div>
       </div>
 
+      <div class="row">
+        <h4>Near By</h4>
+        <% for room in @room.nearbys(10) %>
+          <div class="col-md-4">
+            <div class="card">
+              <%= image_tag room.photos[0].image.url(:medium), class: 'card-img-top img-responsive' if room.photos.length > 0 %>
+              <div class="card-block">
+                <%=	link_to room.listing_name, room, class: 'card-title' %> <br>
+                (<%=	room.distance.round(2) %> miles away)
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
