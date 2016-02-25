@@ -1,0 +1,92 @@
+<div class="card">
+  <%= image_tag @room.photos[0].image.url(), class: 'card-img-top img-responsive' if @room.photos.length > 0 %>
+  <div class="card-block container">
+    <div class="row">
+      <div class="col-md-3 text-xs-center">
+        <%=	image_tag avatar_url(current_user), class: 'avatar-large img-circle' %> <br><br>
+        <%= @room.user.fullname %>
+      </div>
+      <div class="col-md-9">
+        <h4><%=	@room.listing_name %></h4>
+        <%=	@room.address %>
+
+        <div class="row text-xs-center row-space-3">
+          <div class="col-sm-3">
+            <i class="fa fa-home fa-2x"></i>
+            <br><%= @room.home_type %>
+          </div>
+          <div class="col-sm-3">
+            <i class="fa fa-users fa-2x"></i>
+            <br><%= pluralize(@room.accommodate, 'Guest') %>
+          </div>
+          <div class="col-sm-3">
+            <i class="fa fa-bed fa-2x"></i>
+            <br><%= pluralize(@room.bed_room, 'Bedroom') %>
+          </div>
+          <div class="col-sm-3">
+            <i class="fa fa-ship fa-2x"></i>
+            <br><%= pluralize(@room.bath_room, 'Bathroom') %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row row-space-3">
+        <div class="col-md-12">
+          <h2>About this listing</h2>
+          <p><%= @room.summary %></p>
+        </div>
+      </div>
+
+      <div class="row row-space-3">
+        <div class="col-md-2">
+          <p>Amentities</p>
+        </div>
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-6">
+              <ul class="amenities">
+                <li class="<%= 'text-line-through' if !@room.is_tv? %>">TV</li>
+                <li class="<%= 'text-line-through' if !@room.is_kitchen %>">Kitchen</li>
+                <li class="<%= 'text-line-through' if !@room.is_internet %>">Internet</li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul class="amenities">
+                <li class="<%= 'text-line-through' if !@room.is_heating %>">Heating</li>
+                <li class="<%= 'text-line-through' if !@room.is_air %>">Air Conditioning</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row row-space-3">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <%	@room.photos.each do |photo| %>
+              <li data-target="#carousel-example-generic" data-slide-to="<%= photo.id %>" ></li>
+            <% end %>
+          </ol>
+
+          <div class="carousel-inner" role="listbox">
+            <%	@room.photos.each do |photo| %>
+            <div class="carousel-item <%= 'active' if photo.id == @photos[0].id %>">
+              <%= image_tag photo.image.url() %>
+            </div>
+            <% end %>
+          </div>
+
+          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="icon-prev" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="icon-next" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -12,6 +12,7 @@
             <%= current_user.fullname %>
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <%= link_to "Your rooms", rooms_path, class: 'dropdown-item' %>
             <a class="dropdown-item" href="#">Your Trips</a>
             <a class="dropdown-item" href="#">Wish Lists</a>
             <%= link_to "Edit Profile", edit_user_registration_path, class: 'dropdown-item' %>  
