@@ -1,10 +1,6 @@
 <div class="row">
   <div class="col-md-3">
-    <div class="list-group">
-      <%= link_to "Your Rooms", rooms_path, class: 'list-group-item' %>
-      <%= link_to "Your Reservations", rooms_path, class: 'list-group-item' %>
-      <%= link_to "Your Trips", your_trips_path, class: 'list-group-item active' %>
-    </div>
+    <%= render 'shared/leftnav' %>
   </div>
   <div class="col-md-9">
     <div class="card">

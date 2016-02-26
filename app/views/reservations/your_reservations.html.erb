@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'shared/leftnav' %>
+  </div>
+  <div class="col-md-9">
+    <div class="card">
+      <div class="card-header">
+        <h4>Your Reservations</h4>
+      </div>
+      <div class="card-block">
+
+        <% @rooms.each do |room| %>
+          <% room.reservations.each do |reservation| %>
+            <div class="row">
+              <div class="col-md-2">
+                <%= reservation.start_date.strftime('%v') %>
+              </div>
+              <div class="col-md-6">
+                <%= link_to room_path(reservation.room) do %>
+                    <%= image_tag reservation.room.photos[0].image.url() if reservation.room.photos.length > 0 %>
+                <% end %>
+              </div>
+              <div class="col-md-2">
+                <%= link_to user_path(reservation.user) do %>
+                    <%= image_tag avatar_url(reservation.user), class: 'img-circle avatar-medium pull-right' %>
+                <% end %>
+              </div>
+              <div class="col-md-2 text-xs-right">
+                <h4>$ <%= reservation.total %></h4>
+              </div>
+            </div>
+            <hr/>
+          <% end %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+
+</div>

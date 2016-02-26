@@ -214,6 +214,28 @@ ul.amenities li {
   margin-bottom: 10px;
 }
 
+.leftnav {
+  a.list-group-item {
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #565a5c;
+    border-radius: 0px;
+
+    &:hover {
+      background-color: #E5E5E5;
+    }
+
+    &.active {
+      color: black;
+      font-weight: bold;
+
+      &:hover {
+        background-color: #E5E5E5
+      }
+    }
+  }
+}
+
 .toast-message {
 	font-size: 10px;
 }
