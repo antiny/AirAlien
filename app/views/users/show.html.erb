@@ -13,6 +13,20 @@
 	<div class="col-md-9">
 		<h2><%= @user.fullname %></h2>
     <p><%= @user.description %></p>
+
+    <h4>Listings (<%= pluralize(@rooms.length, 'Room') %>)</h4>
+    <div class="row">
+      <%	@rooms.each do |room| %>
+        <div class="col-md-4">
+          <div class="card">
+            <%= image_tag room.photos[0].image.url(), class: 'card-img-top' if room.photos.length > 0 %>
+            <div class="card-block">
+              <%=	link_to room.listing_name, room %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
 	</div>
 </div>
 
