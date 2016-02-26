@@ -1,5 +1,12 @@
 <%=	form_for([@room, @room.reservations.new]) do |f| %>
-    
+
+    <div class="row">
+      <div class="col-md-12 price_tag">
+        <span>$<%= @room.price %></span>
+        <span class="pull-right">Per Night</span>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-md-6">
         <label>Check In</label>
@@ -15,8 +22,8 @@
     <%=	f.hidden_field :price, value: @room.price %>
     <%=	f.hidden_field :total, id: 'reservation_total' %>
 
-    <div id="reservation-preview" style="display: none">
-      <h4><span id="message"></span></h4>
+    <h4><span id="message"></span></h4>
+    <div id="preview" style="display: none">
       <table class="reservation-table">
         <tbody>
         <tr>
@@ -25,14 +32,14 @@
         </tr>
         <tr>
           <td>Total</td>
-          <td><span id="reservation_sum"></span></td>
+          <td>$<span id="reservation_sum"></span></td>
         </tr>
         </tbody>
       </table>
+      <br>
     </div>
 
-    <br>
-    <%=	f.submit "Book Now", class: 'btn btn-primary' %>
+    <%=	f.submit "Book Now", id: 'btn_book', class: 'btn btn-primary wide', disabled: 'true' %>
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
@@ -64,10 +71,10 @@
     // check date range http://jqueryui.com/datepicker/#date-range
     $('#reservation_start_date').datepicker({
       dateFormat: 'dd-mm-yy',
-      mindDate: 0,
+      minDate: 0,
       maxDate: '3m',
       beforeShowDay: unavailable,
-      onClose: function(selectedDate) {
+      onSelect: function(selectedDate) {
         $("#reservation_end_date").datepicker("option", "minDate", selectedDate);
         $("#reservation_end_date").attr('disabled', false);
       }
@@ -75,11 +82,43 @@
 
     $('#reservation_end_date').datepicker({
       dateFormat: 'dd-mm-yy',
-      mindDate: 0,
+      minDate: 0,
       maxDate: '3m',
       beforeShowDay: unavailable,
-      onClose: function(selectedDate) {
+      onSelect: function(selectedDate) {
         $("#reservation_start_date").datepicker("option", "maxDate", selectedDate);
+
+        var start_date = $("#reservation_start_date").datepicker('getDate');
+        var end_date = $("#reservation_end_date").datepicker('getDate');
+        var days = (end_date - start_date)/1000/60/60/24 + 1;
+
+        var input = {
+          'start_date': start_date,
+          'end_date': end_date,
+          'room_id': <%= @room.id %>
+        };
+
+        $.ajax({
+          url: '/preview',
+          data: input,
+          dataType: 'json',
+          success: function(data) {
+            if (data.conflict) {
+              $('#message').text('This date range is not available.')
+              $('#preview').hide();
+              $('#btn_book').attr('disabled', true);
+            }
+            else {
+              $('#preview').show();
+              $('#btn_book').attr('disabled', false);
+
+              var total = days * <%= @room.price %>
+              $('#reservation_days').text(days);
+              $('#reservation_total').text(total);
+              $('#reservation_sum').text(total);
+            }
+          }
+        });
       }
     });
   });
