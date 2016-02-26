@@ -114,8 +114,8 @@
 
               var total = days * <%= @room.price %>
               $('#reservation_days').text(days);
-              $('#reservation_total').text(total);
               $('#reservation_sum').text(total);
+              $('#reservation_total').val(total);
             }
           }
         });
