@@ -45,6 +45,14 @@ gem 'active_link_to'
 
 gem 'ransack'
 
+group :test do
+  gem 'cucumber-rails', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner', '~> 1.2.0'
+  gem 'rspec'
+  gem "shoulda-matchers",   "3.1.1"
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
