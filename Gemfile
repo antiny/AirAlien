@@ -37,11 +37,13 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 
 gem 'aws-sdk', '< 2.0'
-gem "paperclip", "~> 4.3"
+gem 'paperclip', '~> 4.3'
 
 gem 'geocoder'
 gem 'jquery-ui-rails'
 gem 'active_link_to'
+
+gem 'ransack'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

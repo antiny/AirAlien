@@ -111,6 +111,7 @@
           <script>
             function initMap() {
               var mapDiv = document.getElementById('map');
+              // see more options: https://developers.google.com/maps/documentation/javascript/
               var map = new google.maps.Map(mapDiv, {
                 center: {lat: <%= @room.latitude %>, lng: <%=	@room.longitude %>},
                 zoom: 8,
