@@ -50,6 +50,7 @@ group :test do
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner', '~> 1.2.0'
   gem 'rspec'
+  gem 'selenium-webdriver'
   gem "shoulda-matchers",   "3.1.1"
 end
 
